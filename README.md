@@ -196,11 +196,24 @@ CustomDialog.show(
 )
 ```
 
+#### 11. **CustomSheet**
+
+Modal estilo swipe (Bottom Sheet) que desliza de baixo para cima, ideal para menus contextuais ou formulários rápidos.
+
+```dart
+CustomSheet.show(
+  context: context,
+  title: 'Opções',
+  description: 'Escolha uma ação abaixo',
+  child: MyWidget(),
+)
+```
+
 ---
 
 ### Componentes Avançados
 
-#### 11. **CustomCheckbox**
+#### 12. **CustomCheckbox**
 
 Caixas de seleção com label e descrição.
 
@@ -213,7 +226,7 @@ CustomCheckbox(
 )
 ```
 
-#### 12. **CustomRadio & CustomRadioGroup**
+#### 13. **CustomRadio & CustomRadioGroup**
 
 Botões de seleção exclusiva gerenciados em grupo.
 
@@ -232,7 +245,7 @@ CustomRadioGroup<String>(
 )
 ```
 
-#### 13. **CustomSelect**
+#### 14. **CustomSelect**
 
 Dropdown estilizado com label.
 
@@ -249,7 +262,7 @@ CustomSelect<String>(
 )
 ```
 
-#### 14. **CustomSlider**
+#### 15. **CustomSlider**
 
 Controle deslizante com valor exibido.
 
@@ -264,7 +277,7 @@ CustomSlider(
 )
 ```
 
-#### 15. **CustomProgressBar**
+#### 16. **CustomProgressBar**
 
 Barra de progresso determinada e indeterminada.
 
@@ -280,7 +293,7 @@ CustomProgressBarIndeterminate(
 )
 ```
 
-#### 16. **CustomChip**
+#### 17. **CustomChip**
 
 Tags removíveis e selecionáveis com estilo shadcn/ui.
 
@@ -297,7 +310,7 @@ CustomChip(
 )
 ```
 
-#### 17. **CustomTabs**
+#### 18. **CustomTabs**
 
 Sistema de abas com ícones opcionais.
 

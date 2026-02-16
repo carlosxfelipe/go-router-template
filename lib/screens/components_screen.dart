@@ -488,6 +488,42 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
                 );
               },
             ),
+            const SizedBox(height: 12),
+            Button(
+              label: 'Swipe Modal (Sheet)',
+              icon: Icons.unfold_more,
+              onPressed: () {
+                CustomSheet.show(
+                  context: context,
+                  title: 'Swipe Modal',
+                  maxHeight: MediaQuery.of(context).size.height * 0.5,
+                  description:
+                      'Este é um componente que desliza de baixo para cima e pode ser fechado com um gesto.',
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: const Icon(Icons.person),
+                        title: const Text('Editar Perfil'),
+                        onTap: () => Navigator.pop(context),
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.settings),
+                        title: const Text('Configurações'),
+                        onTap: () => Navigator.pop(context),
+                      ),
+                      ListTile(
+                        leading: const Icon(Icons.logout, color: Colors.red),
+                        title: const Text(
+                          'Sair',
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        onTap: () => Navigator.pop(context),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
 
             const SizedBox(height: 32),
             const Separator(),

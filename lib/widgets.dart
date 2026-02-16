@@ -25,3 +25,4 @@ export 'package:go_router_template/widgets/display/progress_bar.dart';
 export 'package:go_router_template/widgets/feedback/dialog.dart';
 export 'package:go_router_template/widgets/feedback/toast.dart';
 export 'package:go_router_template/widgets/feedback/skeleton.dart';
+export 'package:go_router_template/widgets/feedback/sheet.dart';
