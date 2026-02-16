@@ -35,8 +35,14 @@ class Button extends StatelessWidget {
 
     final ButtonStyle style = outlined
         ? OutlinedButton.styleFrom(
-            foregroundColor: effectiveFgColor,
-            side: BorderSide(color: effectiveFgColor),
+            foregroundColor: onPressed == null
+                ? theme.disabledColor
+                : (foregroundColor ?? colorScheme.primary),
+            side: BorderSide(
+              color: onPressed == null
+                  ? theme.disabledColor
+                  : (foregroundColor ?? colorScheme.primary),
+            ),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(6),

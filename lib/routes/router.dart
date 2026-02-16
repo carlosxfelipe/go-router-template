@@ -35,5 +35,10 @@ final GoRouter router = GoRouter(
       pageBuilder: (context, state) =>
           NoTransitionPage(child: const ProfileScreen()),
     ),
+    GoRoute(
+      path: '/components',
+      pageBuilder: (context, state) =>
+          NoTransitionPage(child: const ComponentsScreen()),
+    ),
   ],
 );
