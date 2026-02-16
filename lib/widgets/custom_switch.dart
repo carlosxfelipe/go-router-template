@@ -25,7 +25,7 @@ class CustomSwitch extends StatelessWidget {
         onChanged: onChanged,
         thumbColor: WidgetStateProperty.resolveWith((states) {
           if (states.contains(WidgetState.selected)) {
-            return Colors.white;
+            return theme.colorScheme.onPrimary;
           }
           return null;
         }),
@@ -76,7 +76,7 @@ class CustomSwitch extends StatelessWidget {
               onChanged: onChanged,
               thumbColor: WidgetStateProperty.resolveWith((states) {
                 if (states.contains(WidgetState.selected)) {
-                  return Colors.white;
+                  return theme.colorScheme.onPrimary;
                 }
                 return null;
               }),
