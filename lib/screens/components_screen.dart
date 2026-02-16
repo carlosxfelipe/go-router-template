@@ -1,21 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router_template/widgets/custom_app_bar.dart';
-import 'package:go_router_template/widgets/input.dart';
-import 'package:go_router_template/widgets/card.dart';
-import 'package:go_router_template/widgets/badge.dart' as custom;
-import 'package:go_router_template/widgets/button.dart';
-import 'package:go_router_template/widgets/separator.dart';
-import 'package:go_router_template/widgets/toast.dart';
-import 'package:go_router_template/widgets/custom_switch.dart';
-import 'package:go_router_template/widgets/avatar.dart';
-import 'package:go_router_template/widgets/skeleton.dart';
-import 'package:go_router_template/widgets/dialog.dart';
-import 'package:go_router_template/widgets/checkbox.dart';
-import 'package:go_router_template/widgets/radio.dart';
-import 'package:go_router_template/widgets/select.dart';
-import 'package:go_router_template/widgets/slider.dart';
-import 'package:go_router_template/widgets/progress_bar.dart';
-import 'package:go_router_template/widgets/chip.dart';
+import 'package:go_router_template/widgets.dart';
 
 class ComponentsScreen extends StatefulWidget {
   const ComponentsScreen({super.key});
@@ -170,30 +154,15 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
               spacing: 8,
               runSpacing: 8,
               children: [
-                custom.CustomBadge(
-                  label: 'Default',
-                  variant: custom.BadgeVariant.default_,
-                ),
-                custom.CustomBadge(
+                CustomBadge(label: 'Default', variant: BadgeVariant.default_),
+                CustomBadge(
                   label: 'Secondary',
-                  variant: custom.BadgeVariant.secondary,
+                  variant: BadgeVariant.secondary,
                 ),
-                custom.CustomBadge(
-                  label: 'Success',
-                  variant: custom.BadgeVariant.success,
-                ),
-                custom.CustomBadge(
-                  label: 'Warning',
-                  variant: custom.BadgeVariant.warning,
-                ),
-                custom.CustomBadge(
-                  label: 'Error',
-                  variant: custom.BadgeVariant.error,
-                ),
-                custom.CustomBadge(
-                  label: 'Info',
-                  variant: custom.BadgeVariant.info,
-                ),
+                CustomBadge(label: 'Success', variant: BadgeVariant.success),
+                CustomBadge(label: 'Warning', variant: BadgeVariant.warning),
+                CustomBadge(label: 'Error', variant: BadgeVariant.error),
+                CustomBadge(label: 'Info', variant: BadgeVariant.info),
               ],
             ),
 
@@ -217,9 +186,9 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      const custom.CustomBadge(
+                      const CustomBadge(
                         label: 'Novo',
-                        variant: custom.BadgeVariant.info,
+                        variant: BadgeVariant.info,
                       ),
                     ],
                   ),

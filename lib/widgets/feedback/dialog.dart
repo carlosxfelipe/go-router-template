@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router_template/widgets/button.dart';
+import 'package:go_router_template/widgets/forms/button.dart';
 
 enum DialogType { alert, confirm, custom }
 

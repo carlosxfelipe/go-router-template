@@ -1,20 +1,27 @@
-export 'package:go_router_template/widgets/button.dart';
-export 'package:go_router_template/widgets/custom_app_bar.dart';
-export 'package:go_router_template/widgets/custom_bottom_navigation_bar.dart';
-export 'package:go_router_template/widgets/search_app_bar.dart';
-export 'package:go_router_template/widgets/input.dart';
-export 'package:go_router_template/widgets/card.dart';
-export 'package:go_router_template/widgets/badge.dart';
-export 'package:go_router_template/widgets/separator.dart';
-export 'package:go_router_template/widgets/toast.dart';
-export 'package:go_router_template/widgets/custom_switch.dart';
-export 'package:go_router_template/widgets/avatar.dart';
-export 'package:go_router_template/widgets/skeleton.dart';
-export 'package:go_router_template/widgets/dialog.dart';
-export 'package:go_router_template/widgets/checkbox.dart';
-export 'package:go_router_template/widgets/radio.dart';
-export 'package:go_router_template/widgets/select.dart';
-export 'package:go_router_template/widgets/slider.dart';
-export 'package:go_router_template/widgets/progress_bar.dart';
-export 'package:go_router_template/widgets/chip.dart';
-export 'package:go_router_template/widgets/tabs.dart';
+// Layout
+export 'package:go_router_template/widgets/layout/custom_app_bar.dart';
+export 'package:go_router_template/widgets/layout/search_app_bar.dart';
+export 'package:go_router_template/widgets/layout/custom_bottom_navigation_bar.dart';
+export 'package:go_router_template/widgets/layout/tabs.dart';
+
+// Forms
+export 'package:go_router_template/widgets/forms/button.dart';
+export 'package:go_router_template/widgets/forms/input.dart';
+export 'package:go_router_template/widgets/forms/checkbox.dart';
+export 'package:go_router_template/widgets/forms/radio.dart';
+export 'package:go_router_template/widgets/forms/select.dart';
+export 'package:go_router_template/widgets/forms/slider.dart';
+export 'package:go_router_template/widgets/forms/custom_switch.dart';
+
+// Display
+export 'package:go_router_template/widgets/display/avatar.dart';
+export 'package:go_router_template/widgets/display/badge.dart';
+export 'package:go_router_template/widgets/display/card.dart';
+export 'package:go_router_template/widgets/display/chip.dart';
+export 'package:go_router_template/widgets/display/separator.dart';
+export 'package:go_router_template/widgets/display/progress_bar.dart';
+
+// Feedback
+export 'package:go_router_template/widgets/feedback/dialog.dart';
+export 'package:go_router_template/widgets/feedback/toast.dart';
+export 'package:go_router_template/widgets/feedback/skeleton.dart';
