@@ -22,6 +22,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
   bool _newsletterSubscribed = false;
   String? _selectedPayment = 'credit';
   String? _selectedCountry;
+  String _otpCode = '';
   DateTime? _selectedDate;
   double _volumeValue = 50;
   double _progressValue = 0.65;
@@ -98,6 +99,28 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
               label: 'Mensagem',
               placeholder: 'Digite sua mensagem...',
               maxLines: 4,
+            ),
+            const SizedBox(height: 16),
+            OTPInput(
+              label: 'Código OTP',
+              helperText: 'Digite o código de 6 dígitos',
+              onChanged: (value) {
+                setState(() => _otpCode = value);
+              },
+              onCompleted: (value) {
+                Toast.show(
+                  context,
+                  message: 'Código completo: $value',
+                  variant: ToastVariant.success,
+                );
+              },
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'OTP atual: ${_otpCode.isEmpty ? '-' : _otpCode}',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurface.withAlpha(153),
+              ),
             ),
 
             const SizedBox(height: 32),
@@ -636,6 +659,39 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
                 style: theme.textTheme.bodyMedium,
               ),
             ],
+
+            const SizedBox(height: 32),
+            const Separator(),
+            const SizedBox(height: 32),
+
+            // Section: Accordion
+            _SectionTitle(title: 'Accordion'),
+            const SizedBox(height: 12),
+            CustomAccordion(
+              items: [
+                CustomAccordionItem(
+                  title: 'O que é este template?',
+                  content: Text(
+                    'Um template Flutter com componentes reutilizáveis e estrutura pronta para acelerar desenvolvimento.',
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                ),
+                CustomAccordionItem(
+                  title: 'Tem suporte a tema escuro?',
+                  content: Text(
+                    'Sim. Os componentes respeitam o tema atual e se adaptam automaticamente ao modo claro/escuro.',
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                ),
+                CustomAccordionItem(
+                  title: 'Posso expandir múltiplos itens?',
+                  content: Text(
+                    'Pode. Basta configurar allowMultipleExpanded como true no CustomAccordion.',
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                ),
+              ],
+            ),
 
             const SizedBox(height: 32),
             const Separator(),

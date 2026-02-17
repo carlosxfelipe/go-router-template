@@ -52,7 +52,7 @@ Siga os passos abaixo para aplicar este template a um novo projeto Flutter:
 
 ## Componentes Customizados
 
-Este template inclui **20 componentes** customizados inspirados no **shadcn/ui**, otimizados para mobile e com suporte completo a temas dark/light. Todos os componentes estão disponíveis através do import `package:go_router_template/widgets.dart`.
+Este template inclui **22 componentes** customizados inspirados no **shadcn/ui**, otimizados para mobile e com suporte completo a temas dark/light. Todos os componentes estão disponíveis através do import `package:go_router_template/widgets.dart`.
 
 ### Componentes Essenciais
 
@@ -262,7 +262,22 @@ CustomSelect<String>(
 )
 ```
 
-#### 15. **CustomSlider**
+#### 15. **OTPInput**
+
+Input de código OTP com múltiplos campos, avanço automático de foco e callback ao completar.
+
+```dart
+OTPInput(
+  label: 'Código OTP',
+  helperText: 'Digite o código de 6 dígitos',
+  onChanged: (value) => setState(() => _otp = value),
+  onCompleted: (value) {
+    // código completo
+  },
+)
+```
+
+#### 16. **CustomSlider**
 
 Controle deslizante com valor exibido.
 
@@ -277,7 +292,7 @@ CustomSlider(
 )
 ```
 
-#### 16. **CustomProgressBar**
+#### 17. **CustomProgressBar**
 
 Barra de progresso determinada e indeterminada.
 
@@ -293,7 +308,7 @@ CustomProgressBarIndeterminate(
 )
 ```
 
-#### 17. **LoadingSpinner**
+#### 18. **LoadingSpinner**
 
 Spinner circular para estados de carregamento, com tamanhos e label opcional.
 
@@ -306,7 +321,7 @@ LoadingSpinner(
 )
 ```
 
-#### 18. **CustomCalendar**
+#### 19. **CustomCalendar**
 
 Calendário mensal com navegação entre meses e seleção de data.
 
@@ -318,7 +333,7 @@ CustomCalendar(
 )
 ```
 
-#### 19. **CustomChip**
+#### 20. **CustomChip**
 
 Tags removíveis e selecionáveis com estilo shadcn/ui.
 
@@ -335,7 +350,22 @@ CustomChip(
 )
 ```
 
-#### 20. **CustomTabs**
+#### 21. **CustomAccordion**
+
+Componente expansível para organizar conteúdo em seções recolhíveis.
+
+```dart
+CustomAccordion(
+  items: [
+    CustomAccordionItem(
+      title: 'Pergunta frequente',
+      content: Text('Resposta detalhada aqui.'),
+    ),
+  ],
+)
+```
+
+#### 22. **CustomTabs**
 
 Sistema de abas com ícones opcionais.
 

@@ -3,6 +3,7 @@ export 'package:go_router_template/widgets/layout/custom_app_bar.dart';
 export 'package:go_router_template/widgets/layout/search_app_bar.dart';
 export 'package:go_router_template/widgets/layout/custom_bottom_navigation_bar.dart';
 export 'package:go_router_template/widgets/layout/tabs.dart';
+export 'package:go_router_template/widgets/layout/accordion.dart';
 
 // Forms
 export 'package:go_router_template/widgets/forms/button.dart';
@@ -13,6 +14,7 @@ export 'package:go_router_template/widgets/forms/select.dart';
 export 'package:go_router_template/widgets/forms/slider.dart';
 export 'package:go_router_template/widgets/forms/custom_switch.dart';
 export 'package:go_router_template/widgets/forms/calendar.dart';
+export 'package:go_router_template/widgets/forms/otp_input.dart';
 
 // Display
 export 'package:go_router_template/widgets/display/avatar.dart';
