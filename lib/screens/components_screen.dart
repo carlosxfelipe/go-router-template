@@ -329,6 +329,34 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
             const Separator(),
             const SizedBox(height: 32),
 
+            // Section: Tooltip
+            _SectionTitle(title: 'Tooltip'),
+            const SizedBox(height: 12),
+            CustomCard(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Toque/clique ou passe o mouse no ícone',
+                    style: theme.textTheme.bodyMedium,
+                  ),
+                  CustomTooltip(
+                    message: 'Este é um tooltip customizado',
+                    arrowAlignment: TooltipArrowAlignment.right,
+                    child: Icon(
+                      Icons.info_outline,
+                      size: 22,
+                      color: theme.colorScheme.primary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 32),
+            const Separator(),
+            const SizedBox(height: 32),
+
             // Section: Switches
             _SectionTitle(title: 'Switches'),
             const SizedBox(height: 12),

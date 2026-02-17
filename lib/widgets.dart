@@ -30,3 +30,4 @@ export 'package:go_router_template/widgets/feedback/toast.dart';
 export 'package:go_router_template/widgets/feedback/skeleton.dart';
 export 'package:go_router_template/widgets/feedback/sheet.dart';
 export 'package:go_router_template/widgets/feedback/loading_spinner.dart';
+export 'package:go_router_template/widgets/feedback/tooltip.dart';

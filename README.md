@@ -52,7 +52,7 @@ Siga os passos abaixo para aplicar este template a um novo projeto Flutter:
 
 ## Componentes Customizados
 
-Este template inclui **22 componentes** customizados inspirados no **shadcn/ui**, otimizados para mobile e com suporte completo a temas dark/light. Todos os componentes estão disponíveis através do import `package:go_router_template/widgets.dart`.
+Este template inclui **23 componentes** customizados inspirados no **shadcn/ui**, otimizados para mobile e com suporte completo a temas dark/light. Todos os componentes estão disponíveis através do import `package:go_router_template/widgets.dart`.
 
 ### Componentes Essenciais
 
@@ -382,6 +382,18 @@ CustomTabs(
 )
 ```
 
+#### 23. **CustomTooltip**
+
+Tooltip customizado com suporte a trigger por toque/clique, seta opcional e alinhamento da seta (`left`, `center`, `right`).
+
+```dart
+CustomTooltip(
+  message: 'Este é um tooltip',
+  arrowAlignment: TooltipArrowAlignment.right,
+  child: Icon(Icons.info_outline),
+)
+```
+
 ---
 
 ## Visualização dos Componentes
@@ -404,3 +416,22 @@ O projeto utiliza cores inspiradas no shadcn/ui com suporte completo a dark mode
 - **Tipografia**: System font padrão otimizada para mobile
 
 Todos os componentes adaptam automaticamente suas cores baseado no `ThemeMode.system`.
+
+### Customização de Cores
+
+Se desejar alterar as cores do projeto, você pode ajustá-las diretamente no arquivo `lib/theme/theme.dart` dentro da classe `AppColors`.
+
+Por exemplo, para alterar a cor primária para vermelho, você pode ajustar as seguintes constantes:
+
+```dart
+class AppColors {
+  // ... outras cores
+
+  static const primaryLight = Color(0xFFD62828);
+
+  static const primaryDark = Color(0xFFD62828);
+  static const onPrimaryDark = Colors.white;
+
+  // ... outras cores
+}
+```
