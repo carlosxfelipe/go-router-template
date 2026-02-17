@@ -8,6 +8,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomBottomNavigationBar(
       currentIndex: 0, // Índice correspondente à página de "Início"
+      isGlass: true,
       child: Scaffold(
         appBar: SearchAppBar(
           icon: Icons.notifications_outlined,
@@ -28,8 +29,14 @@ class HomeBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Padding(
-      padding: const EdgeInsets.all(16),
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      padding: const EdgeInsets.fromLTRB(
+        16,
+        16,
+        16,
+        120,
+      ), // Padding extra no fundo para o dock
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -124,7 +131,48 @@ class HomeBody extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(height: 24),
+          Text(
+            'Sobre o Projeto',
+            style: theme.textTheme.titleLarge?.copyWith(
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 16),
+          _buildLoremIpsum(theme),
+          const SizedBox(height: 16),
+          CustomCard(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Por que usar este template?',
+                  style: theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                _buildLoremIpsum(theme, short: true),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+          _buildLoremIpsum(theme),
+          const SizedBox(height: 16),
+          _buildLoremIpsum(theme),
         ],
+      ),
+    );
+  }
+
+  Widget _buildLoremIpsum(ThemeData theme, {bool short = false}) {
+    return Text(
+      short
+          ? 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+          : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      style: theme.textTheme.bodyMedium?.copyWith(
+        color: theme.colorScheme.onSurface.withAlpha(179),
+        height: 1.6,
       ),
     );
   }
