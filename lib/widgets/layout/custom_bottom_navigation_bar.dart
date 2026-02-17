@@ -58,7 +58,11 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   label: 'Início',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.tune),
+                  icon: Icon(
+                    widget.currentIndex == 1
+                        ? Icons.settings
+                        : Icons.settings_outlined,
+                  ),
                   label: 'Configurações',
                 ),
               ],

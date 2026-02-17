@@ -75,12 +75,13 @@ class AppTheme {
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
         statusBarIconBrightness: isDark ? Brightness.light : Brightness.dark,
-        systemNavigationBarColor: isDark
-            ? AppColors.scaffoldBackgroundDark
-            : AppColors.scaffoldBackgroundLight,
+        statusBarBrightness: isDark ? Brightness.dark : Brightness.light,
+        systemNavigationBarColor: Colors.transparent,
         systemNavigationBarIconBrightness: isDark
             ? Brightness.light
             : Brightness.dark,
+        systemNavigationBarDividerColor: Colors.transparent,
+        systemNavigationBarContrastEnforced: false,
       ),
     );
   }
