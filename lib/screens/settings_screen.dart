@@ -7,7 +7,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomBottomNavigationBar(
+    return FloatingDock(
       currentIndex: 1, // Índice correspondente à página de "Configurações"
       child: Scaffold(
         appBar: const CustomAppBar(title: 'Configurações'),

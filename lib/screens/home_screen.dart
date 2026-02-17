@@ -6,9 +6,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomBottomNavigationBar(
+    return FloatingDock(
       currentIndex: 0, // Índice correspondente à página de "Início"
-      isGlass: true,
+      isGlass: true, // Ativa o efeito de vidro (glassmorphism)
       child: Scaffold(
         appBar: SearchAppBar(
           icon: Icons.notifications_outlined,
