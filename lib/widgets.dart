@@ -12,6 +12,7 @@ export 'package:go_router_template/widgets/forms/radio.dart';
 export 'package:go_router_template/widgets/forms/select.dart';
 export 'package:go_router_template/widgets/forms/slider.dart';
 export 'package:go_router_template/widgets/forms/custom_switch.dart';
+export 'package:go_router_template/widgets/forms/calendar.dart';
 
 // Display
 export 'package:go_router_template/widgets/display/avatar.dart';
@@ -26,3 +27,4 @@ export 'package:go_router_template/widgets/feedback/dialog.dart';
 export 'package:go_router_template/widgets/feedback/toast.dart';
 export 'package:go_router_template/widgets/feedback/skeleton.dart';
 export 'package:go_router_template/widgets/feedback/sheet.dart';
+export 'package:go_router_template/widgets/feedback/loading_spinner.dart';

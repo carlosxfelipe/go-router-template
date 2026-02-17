@@ -52,7 +52,7 @@ Siga os passos abaixo para aplicar este template a um novo projeto Flutter:
 
 ## Componentes Customizados
 
-Este template inclui **17 componentes** customizados inspirados no **shadcn/ui**, otimizados para mobile e com suporte completo a temas dark/light. Todos os componentes estão disponíveis através do import `package:go_router_template/widgets.dart`.
+Este template inclui **20 componentes** customizados inspirados no **shadcn/ui**, otimizados para mobile e com suporte completo a temas dark/light. Todos os componentes estão disponíveis através do import `package:go_router_template/widgets.dart`.
 
 ### Componentes Essenciais
 
@@ -293,7 +293,32 @@ CustomProgressBarIndeterminate(
 )
 ```
 
-#### 17. **CustomChip**
+#### 17. **LoadingSpinner**
+
+Spinner circular para estados de carregamento, com tamanhos e label opcional.
+
+```dart
+LoadingSpinner(size: LoadingSpinnerSize.medium)
+
+LoadingSpinner(
+  size: LoadingSpinnerSize.large,
+  label: 'Carregando...',
+)
+```
+
+#### 18. **CustomCalendar**
+
+Calendário mensal com navegação entre meses e seleção de data.
+
+```dart
+CustomCalendar(
+  label: 'Selecione uma data',
+  selectedDate: _selectedDate,
+  onDateSelected: (date) => setState(() => _selectedDate = date),
+)
+```
+
+#### 19. **CustomChip**
 
 Tags removíveis e selecionáveis com estilo shadcn/ui.
 
@@ -310,7 +335,7 @@ CustomChip(
 )
 ```
 
-#### 18. **CustomTabs**
+#### 20. **CustomTabs**
 
 Sistema de abas com ícones opcionais.
 

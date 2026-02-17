@@ -22,6 +22,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
   bool _newsletterSubscribed = false;
   String? _selectedPayment = 'credit';
   String? _selectedCountry;
+  DateTime? _selectedDate;
   double _volumeValue = 50;
   double _progressValue = 0.65;
   final List<String> _selectedTags = ['Flutter', 'Dart'];
@@ -618,6 +619,28 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
             const Separator(),
             const SizedBox(height: 32),
 
+            // Section: Calendar
+            _SectionTitle(title: 'Calendar'),
+            const SizedBox(height: 12),
+            CustomCalendar(
+              label: 'Selecione uma data',
+              selectedDate: _selectedDate,
+              onDateSelected: (date) {
+                setState(() => _selectedDate = date);
+              },
+            ),
+            if (_selectedDate != null) ...[
+              const SizedBox(height: 12),
+              Text(
+                'Data selecionada: ${_selectedDate!.day.toString().padLeft(2, '0')}/${_selectedDate!.month.toString().padLeft(2, '0')}/${_selectedDate!.year}',
+                style: theme.textTheme.bodyMedium,
+              ),
+            ],
+
+            const SizedBox(height: 32),
+            const Separator(),
+            const SizedBox(height: 32),
+
             // Section: Slider
             _SectionTitle(title: 'Slider'),
             const SizedBox(height: 12),
@@ -678,6 +701,26 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
             ),
             const SizedBox(height: 16),
             const CustomProgressBarIndeterminate(label: 'Carregando dados...'),
+
+            const SizedBox(height: 32),
+            const Separator(),
+            const SizedBox(height: 32),
+
+            // Section: Loading Spinner
+            _SectionTitle(title: 'Loading Spinner'),
+            const SizedBox(height: 12),
+            const CustomCard(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  LoadingSpinner(size: LoadingSpinnerSize.small),
+                  LoadingSpinner(size: LoadingSpinnerSize.medium),
+                  LoadingSpinner(size: LoadingSpinnerSize.large),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            const LoadingSpinner(label: 'Carregando...'),
 
             const SizedBox(height: 32),
             const Separator(),
