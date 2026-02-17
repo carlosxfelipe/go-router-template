@@ -62,31 +62,27 @@ class _FloatingDockState extends State<FloatingDock> {
   Widget _buildDock(bool isDarkMode, ThemeData theme) {
     return Container(
       height: 64,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+        vertical: 8,
+      ), // Padding para os itens "dentro" do dock
       decoration: BoxDecoration(
         color: widget.isGlass
             ? (isDarkMode
-                  ? Colors.white.withAlpha(20)
+                  ? Colors.black.withAlpha(40)
                   : Colors.white.withAlpha(150))
-            : (isDarkMode
-                  ? theme.colorScheme.surface
-                  : theme.colorScheme.surface),
+            : theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(32),
-        boxShadow: widget.isGlass
-            ? null
-            : [
-                BoxShadow(
-                  color: Colors.black.withAlpha(isDarkMode ? 120 : 40),
-                  blurRadius: 25,
-                  offset: const Offset(0, 8),
-                ),
-              ],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withAlpha(isDarkMode ? 40 : 15),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
         border: Border.all(
-          color: isDarkMode
-              ? Colors.white.withAlpha(30)
-              : (widget.isGlass
-                    ? Colors.white.withAlpha(100)
-                    : Colors.black.withAlpha(10)),
-          width: 1.5,
+          color: isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,
+          width: 1.0,
         ),
       ),
       child: Row(
@@ -118,18 +114,29 @@ class _FloatingDockState extends State<FloatingDock> {
     final theme = Theme.of(context);
 
     return Expanded(
-      child: InkWell(
-        onTap: () => _onItemTapped(index),
-        borderRadius: BorderRadius.circular(32),
-        child: SizedBox(
-          height: 64,
-          child: Center(
-            child: Icon(
-              icon,
-              size: 26,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: InkWell(
+          onTap: () => _onItemTapped(index),
+          borderRadius: BorderRadius.circular(24),
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            decoration: BoxDecoration(
               color: isSelected
-                  ? (isDarkMode ? Colors.white : Colors.black)
-                  : theme.colorScheme.onSurface.withAlpha(100),
+                  ? (isDarkMode
+                        ? Colors.white.withAlpha(30)
+                        : theme.colorScheme.secondary)
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: Center(
+              child: Icon(
+                icon,
+                size: 24,
+                color: isSelected
+                    ? (isDarkMode ? Colors.white : theme.colorScheme.primary)
+                    : theme.colorScheme.onSurface.withAlpha(100),
+              ),
             ),
           ),
         ),
