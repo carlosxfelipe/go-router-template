@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/rendering.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   final int currentIndex;
   final Widget child;
+  final bool hideOnScroll;
+  final bool showLabels;
 
   const CustomBottomNavigationBar({
     super.key,
     required this.currentIndex,
     required this.child,
+    this.hideOnScroll = false,
+    this.showLabels = true,
   });
 
   @override
@@ -17,7 +22,27 @@ class CustomBottomNavigationBar extends StatefulWidget {
       _CustomBottomNavigationBarState();
 }
 
-class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _hideController;
+  bool _isVisible = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _hideController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 300),
+    );
+    _hideController.forward();
+  }
+
+  @override
+  void dispose() {
+    _hideController.dispose();
+    super.dispose();
+  }
+
   void _onItemTapped(int index) {
     if (index == widget.currentIndex) return;
 
@@ -31,42 +56,91 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
     }
   }
 
+  bool _handleScrollNotification(UserScrollNotification notification) {
+    if (!widget.hideOnScroll) return false;
+
+    if (notification.direction == ScrollDirection.reverse && _isVisible) {
+      setState(() {
+        _isVisible = false;
+        _hideController.reverse();
+      });
+    } else if (notification.direction == ScrollDirection.forward &&
+        !_isVisible) {
+      setState(() {
+        _isVisible = true;
+        _hideController.forward();
+      });
+    }
+    return false;
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDarkMode = theme.brightness == Brightness.dark;
 
-    return Scaffold(
-      body: SafeArea(child: widget.child),
-      bottomNavigationBar:
-          MediaQuery.of(context).orientation == Orientation.landscape && !kIsWeb
-          ? null
-          : BottomNavigationBar(
-              currentIndex: widget.currentIndex,
-              onTap: _onItemTapped,
+    final bottomBar =
+        MediaQuery.of(context).orientation == Orientation.landscape && !kIsWeb
+        ? null
+        : NavigationBarTheme(
+            data: NavigationBarThemeData(
+              indicatorColor: theme.colorScheme.secondary,
+              labelTextStyle: WidgetStateProperty.resolveWith((states) {
+                final isSelected = states.contains(WidgetState.selected);
+                return TextStyle(
+                  fontSize: 12,
+                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                  color: isSelected
+                      ? theme.colorScheme.primary
+                      : theme.colorScheme.onSurface.withAlpha(153),
+                );
+              }),
+              iconTheme: WidgetStateProperty.resolveWith((states) {
+                final isSelected = states.contains(WidgetState.selected);
+                return IconThemeData(
+                  size: 24,
+                  color: isSelected
+                      ? theme.colorScheme.primary
+                      : theme.colorScheme.onSurface.withAlpha(153),
+                );
+              }),
+            ),
+            child: NavigationBar(
+              selectedIndex: widget.currentIndex,
+              onDestinationSelected: _onItemTapped,
               backgroundColor: theme.scaffoldBackgroundColor,
-              selectedItemColor: isDarkMode ? Colors.white : Colors.black,
-              unselectedItemColor: theme.colorScheme.onSurface.withAlpha(
-                (0.6 * 255).toInt(),
-              ),
-              type: BottomNavigationBarType.fixed,
-              items: [
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    widget.currentIndex == 0 ? Icons.home : Icons.home_outlined,
-                  ),
+              elevation: 0,
+              height: widget.showLabels ? 80 : 64,
+              labelBehavior: widget.showLabels
+                  ? NavigationDestinationLabelBehavior.alwaysShow
+                  : NavigationDestinationLabelBehavior.alwaysHide,
+              destinations: [
+                NavigationDestination(
+                  icon: const Icon(Icons.home_outlined),
+                  selectedIcon: const Icon(Icons.home),
                   label: 'Início',
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    widget.currentIndex == 1
-                        ? Icons.settings
-                        : Icons.settings_outlined,
-                  ),
+                NavigationDestination(
+                  icon: const Icon(Icons.settings_outlined),
+                  selectedIcon: const Icon(Icons.settings),
                   label: 'Configurações',
                 ),
               ],
             ),
+          );
+
+    return Scaffold(
+      extendBody: true,
+      body: NotificationListener<UserScrollNotification>(
+        onNotification: _handleScrollNotification,
+        child: SafeArea(child: widget.child),
+      ),
+      bottomNavigationBar: widget.hideOnScroll && bottomBar != null
+          ? SizeTransition(
+              sizeFactor: _hideController,
+              axisAlignment: -1.0,
+              child: bottomBar,
+            )
+          : bottomBar,
     );
   }
 }

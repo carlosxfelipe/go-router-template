@@ -398,32 +398,20 @@ CustomTooltip(
 
 ## Componentes de Navegação
 
-Este template oferece duas opções de navegação inferior:
-
-#### 1. **FloatingDock** (Recomendado)
-
-Um dock moderno e flutuante ideal para interfaces minimalistas e premium.
-
-- **Animações Reativas**: Transições suaves e efeitos de escala ao interagir com os ícones.
-- **Design Adaptativo**: Funciona perfeitamente em modo claro e escuro.
-
-```dart
-FloatingDock(
-  currentIndex: 0,
-  child: Scaffold(...),
-)
-```
-
-#### 2. **CustomBottomNavigationBar**
+#### **CustomBottomNavigationBar**
 
 Uma versão customizada da barra de navegação padrão do Material Design.
 
 - **Familiaridade**: Segue o padrão clássico de navegação inferior.
 - **Simplicidade**: Design sólido que utiliza as cores do `scaffoldBackgroundColor`.
+- **Auto-ocultação**: Suporte opcional para esconder a barra ao scrollar para baixo e mostrar ao scrollar para cima (`hideOnScroll: true`).
+- **Rótulos Opcionais**: Escolha se deseja exibir os nomes dos itens (`showLabels: true`). Quando desativado, a barra assume uma altura reduzida (64px) para um visual mais compacto.
 
 ```dart
 CustomBottomNavigationBar(
   currentIndex: 0,
+  hideOnScroll: true, // Opcional
+  showLabels: false,  // Opcional (Padrão: true)
   child: Scaffold(...),
 )
 ```

@@ -6,8 +6,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingDock(
+    return CustomBottomNavigationBar(
       currentIndex: 0, // Índice correspondente à página de "Início"
+      hideOnScroll: true, // Oculta a barra ao scrollar
       child: Scaffold(
         appBar: SearchAppBar(
           icon: Icons.notifications_outlined,

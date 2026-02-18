@@ -2,7 +2,6 @@
 export 'package:go_router_template/widgets/layout/custom_app_bar.dart';
 export 'package:go_router_template/widgets/layout/search_app_bar.dart';
 export 'package:go_router_template/widgets/layout/custom_bottom_navigation_bar.dart';
-export 'package:go_router_template/widgets/layout/floating_dock.dart';
 export 'package:go_router_template/widgets/layout/tabs.dart';
 export 'package:go_router_template/widgets/layout/accordion.dart';
 
