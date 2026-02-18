@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum TooltipArrowAlignment { left, center, right }
+enum TooltipArrowAlignment { left, centerLeft, center, centerRight, right }
 
 class CustomTooltip extends StatelessWidget {
   const CustomTooltip({
@@ -124,10 +124,21 @@ class _TooltipBubbleShape extends ShapeBorder {
     }
 
     final edgePadding = borderRadius + (arrowWidth / 2) + 4;
+    final minX = bodyRect.left + edgePadding;
+    final maxX = bodyRect.right - edgePadding;
+
+    double positionAt(double factor) {
+      return (bodyRect.left + (bodyRect.width * factor))
+          .clamp(minX, maxX)
+          .toDouble();
+    }
+
     final centerX = switch (arrowAlignment) {
-      TooltipArrowAlignment.left => bodyRect.left + edgePadding,
+      TooltipArrowAlignment.left => minX,
+      TooltipArrowAlignment.centerLeft => positionAt(0.35),
       TooltipArrowAlignment.center => bodyRect.center.dx,
-      TooltipArrowAlignment.right => bodyRect.right - edgePadding,
+      TooltipArrowAlignment.centerRight => positionAt(0.65),
+      TooltipArrowAlignment.right => maxX,
     };
 
     if (arrowOnTop) {

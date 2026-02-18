@@ -9,6 +9,15 @@ class ComponentsScreen extends StatefulWidget {
 }
 
 class _ComponentsScreenState extends State<ComponentsScreen> {
+  static const List<String> _allTags = [
+    'Flutter',
+    'Dart',
+    'Mobile',
+    'Web',
+    'Desktop',
+    'Backend',
+  ];
+
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   String? _emailError;
@@ -342,7 +351,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
                   ),
                   CustomTooltip(
                     message: 'Este é um tooltip customizado',
-                    arrowAlignment: TooltipArrowAlignment.right,
+                    arrowAlignment: TooltipArrowAlignment.centerRight,
                     child: Icon(
                       Icons.info_outline,
                       size: 22,
@@ -870,14 +879,14 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: ['Mobile', 'Web', 'Desktop', 'Backend']
+              children: _allTags
                   .where((tag) => !_selectedTags.contains(tag))
                   .map(
                     (tag) => CustomChip(
                       label: tag,
                       selected: false,
                       onSelected: (selected) {
-                        if (selected) {
+                        if (selected && !_selectedTags.contains(tag)) {
                           setState(() => _selectedTags.add(tag));
                         }
                       },

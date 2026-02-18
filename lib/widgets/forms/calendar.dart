@@ -24,18 +24,18 @@ class CustomCalendar extends StatefulWidget {
 
 class _CustomCalendarState extends State<CustomCalendar> {
   static const List<String> _monthNames = [
-    'Janeiro',
-    'Fevereiro',
-    'Março',
-    'Abril',
-    'Maio',
-    'Junho',
-    'Julho',
-    'Agosto',
-    'Setembro',
-    'Outubro',
-    'Novembro',
-    'Dezembro',
+    'jan.',
+    'fev.',
+    'mar.',
+    'abr.',
+    'mai.',
+    'jun.',
+    'jul.',
+    'ago.',
+    'set.',
+    'out.',
+    'nov.',
+    'dez.',
   ];
 
   static const List<String> _weekdays = [
@@ -50,6 +50,22 @@ class _CustomCalendarState extends State<CustomCalendar> {
 
   late DateTime _displayedMonth;
   DateTime? _selectedDate;
+
+  DateTime? get _firstMonth {
+    final firstDate = _normalizeNullableDate(widget.firstDate);
+    if (firstDate == null) {
+      return null;
+    }
+    return DateTime(firstDate.year, firstDate.month);
+  }
+
+  DateTime? get _lastMonth {
+    final lastDate = _normalizeNullableDate(widget.lastDate);
+    if (lastDate == null) {
+      return null;
+    }
+    return DateTime(lastDate.year, lastDate.month);
+  }
 
   DateTime get _today {
     final now = DateTime.now();
@@ -94,31 +110,70 @@ class _CustomCalendarState extends State<CustomCalendar> {
     return true;
   }
 
-  void _changeMonth(int delta) {
-    final candidate = DateTime(
-      _displayedMonth.year,
-      _displayedMonth.month + delta,
-    );
-    final firstDate = _normalizeNullableDate(widget.firstDate);
-    final lastDate = _normalizeNullableDate(widget.lastDate);
+  bool _isMonthInRange(DateTime month) {
+    final normalizedMonth = DateTime(month.year, month.month);
+    final firstMonth = _firstMonth;
+    final lastMonth = _lastMonth;
 
-    if (firstDate != null) {
-      final firstMonth = DateTime(firstDate.year, firstDate.month);
-      if (candidate.isBefore(firstMonth)) {
-        return;
-      }
+    if (firstMonth != null && normalizedMonth.isBefore(firstMonth)) {
+      return false;
     }
+    if (lastMonth != null && normalizedMonth.isAfter(lastMonth)) {
+      return false;
+    }
+    return true;
+  }
 
-    if (lastDate != null) {
-      final lastMonth = DateTime(lastDate.year, lastDate.month);
-      if (candidate.isAfter(lastMonth)) {
-        return;
-      }
+  bool get _canGoPreviousMonth {
+    return _isMonthInRange(
+      DateTime(_displayedMonth.year, _displayedMonth.month - 1),
+    );
+  }
+
+  bool get _canGoNextMonth {
+    return _isMonthInRange(
+      DateTime(_displayedMonth.year, _displayedMonth.month + 1),
+    );
+  }
+
+  int get _minYear {
+    return _firstMonth?.year ?? (_displayedMonth.year - 50);
+  }
+
+  int get _maxYear {
+    return _lastMonth?.year ?? (_displayedMonth.year + 50);
+  }
+
+  List<int> get _availableYears {
+    if (_maxYear < _minYear) {
+      return [_displayedMonth.year];
+    }
+    return List<int>.generate(
+      (_maxYear - _minYear) + 1,
+      (index) => _minYear + index,
+    );
+  }
+
+  List<int> _availableMonthsForYear(int year) {
+    return List<int>.generate(
+      12,
+      (index) => index + 1,
+    ).where((month) => _isMonthInRange(DateTime(year, month))).toList();
+  }
+
+  void _setDisplayedMonth(int year, int month) {
+    final candidate = DateTime(year, month);
+    if (!_isMonthInRange(candidate)) {
+      return;
     }
 
     setState(() {
       _displayedMonth = candidate;
     });
+  }
+
+  void _changeMonth(int delta) {
+    _setDisplayedMonth(_displayedMonth.year, _displayedMonth.month + delta);
   }
 
   @override
@@ -170,18 +225,79 @@ class _CustomCalendarState extends State<CustomCalendar> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    onPressed: () => _changeMonth(-1),
+                    onPressed: _canGoPreviousMonth
+                        ? () => _changeMonth(-1)
+                        : null,
                     icon: const Icon(Icons.chevron_left),
                     visualDensity: VisualDensity.compact,
                   ),
-                  Text(
-                    '${_monthNames[_displayedMonth.month - 1]} ${_displayedMonth.year}',
-                    style: theme.textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      DropdownButtonHideUnderline(
+                        child: DropdownButton<int>(
+                          value: _displayedMonth.month,
+                          borderRadius: BorderRadius.circular(8),
+                          style: theme.textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: theme.colorScheme.onSurface,
+                          ),
+                          items: _availableMonthsForYear(_displayedMonth.year)
+                              .map(
+                                (month) => DropdownMenuItem<int>(
+                                  value: month,
+                                  child: Text(_monthNames[month - 1]),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (month) {
+                            if (month == null) {
+                              return;
+                            }
+                            _setDisplayedMonth(_displayedMonth.year, month);
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      DropdownButtonHideUnderline(
+                        child: DropdownButton<int>(
+                          value: _displayedMonth.year,
+                          borderRadius: BorderRadius.circular(8),
+                          style: theme.textTheme.titleSmall?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: theme.colorScheme.onSurface,
+                          ),
+                          items: _availableYears
+                              .map(
+                                (year) => DropdownMenuItem<int>(
+                                  value: year,
+                                  child: Text('$year'),
+                                ),
+                              )
+                              .toList(),
+                          onChanged: (year) {
+                            if (year == null) {
+                              return;
+                            }
+
+                            final months = _availableMonthsForYear(year);
+                            if (months.isEmpty) {
+                              return;
+                            }
+
+                            final targetMonth =
+                                months.contains(_displayedMonth.month)
+                                ? _displayedMonth.month
+                                : months.first;
+
+                            _setDisplayedMonth(year, targetMonth);
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                   IconButton(
-                    onPressed: () => _changeMonth(1),
+                    onPressed: _canGoNextMonth ? () => _changeMonth(1) : null,
                     icon: const Icon(Icons.chevron_right),
                     visualDensity: VisualDensity.compact,
                   ),
