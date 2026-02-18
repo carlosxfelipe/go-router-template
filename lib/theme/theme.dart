@@ -30,6 +30,7 @@ class AppTheme {
         onSecondary: AppColors.onSecondaryLight,
         surface: AppColors.surfaceLight,
         onSurface: Colors.black,
+        outlineVariant: Colors.grey.shade300,
       ),
       scaffoldBackgroundColor: AppColors.scaffoldBackgroundLight,
       appBarTheme: const AppBarTheme(
@@ -54,6 +55,7 @@ class AppTheme {
         onSecondary: AppColors.onSecondaryDark,
         surface: AppColors.surfaceDark,
         onSurface: Colors.white,
+        outlineVariant: Colors.grey.shade700,
       ),
       scaffoldBackgroundColor: AppColors.scaffoldBackgroundDark,
       appBarTheme: const AppBarTheme(

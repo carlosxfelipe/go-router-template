@@ -402,16 +402,14 @@ Este template oferece duas opções de navegação inferior:
 
 #### 1. **FloatingDock** (Recomendado)
 
-Um dock moderno e flutuante no estilo "Liquid Glass". É ideal para interfaces minimalistas e premium.
+Um dock moderno e flutuante ideal para interfaces minimalistas e premium.
 
-- **Suporte a Glassmorphism**: Ative o efeito de vidro jateado com a propriedade `isGlass`.
 - **Animações Reativas**: Transições suaves e efeitos de escala ao interagir com os ícones.
 - **Design Adaptativo**: Funciona perfeitamente em modo claro e escuro.
 
 ```dart
 FloatingDock(
   currentIndex: 0,
-  isGlass: true, // Efeito de vidro opcional
   child: Scaffold(...),
 )
 ```

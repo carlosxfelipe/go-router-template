@@ -8,13 +8,10 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingDock(
       currentIndex: 0, // Índice correspondente à página de "Início"
-      isGlass: true, // Ativa o efeito de vidro (glassmorphism)
       child: Scaffold(
         appBar: SearchAppBar(
           icon: Icons.notifications_outlined,
-          onIconPressed: () {
-            // Ação de notificações
-          },
+          onIconPressed: () {},
         ),
         body: HomeBody(),
       ),
@@ -53,16 +50,6 @@ class HomeBody extends StatelessWidget {
               color: theme.colorScheme.onSurface.withAlpha(153),
             ),
           ),
-          // const SizedBox(height: 24),
-          // ClipRRect(
-          //   borderRadius: BorderRadius.circular(16),
-          //   child: Image.network(
-          //     'https://images.pexels.com/photos/13578883/pexels-photo-13578883.jpeg',
-          //     width: double.infinity,
-          //     height: MediaQuery.of(context).size.height,
-          //     fit: BoxFit.cover,
-          //   ),
-          // ),
           const SizedBox(height: 24),
           CustomCard(
             child: Column(

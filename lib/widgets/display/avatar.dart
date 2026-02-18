@@ -66,11 +66,7 @@ class CustomAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDarkMode = theme.brightness == Brightness.dark;
-
-    final bgColor =
-        backgroundColor ??
-        (isDarkMode ? Colors.grey.shade800 : Colors.grey.shade200);
+    final bgColor = backgroundColor ?? theme.colorScheme.secondary;
     final fgColor = foregroundColor ?? theme.colorScheme.onSurface;
 
     Widget child;

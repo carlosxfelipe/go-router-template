@@ -725,6 +725,31 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
             const Separator(),
             const SizedBox(height: 32),
 
+            // Section: Tabs
+            _SectionTitle(title: 'Tabs'),
+            const SizedBox(height: 12),
+            SizedBox(
+              height: 200,
+              child: CustomTabs(
+                tabs: const [
+                  CustomTab(label: 'Início', icon: Icons.home),
+                  CustomTab(label: 'Perfil', icon: Icons.person),
+                  CustomTab(label: 'Apenas Texto'),
+                ],
+                children: [
+                  const Center(child: Text('Conteúdo da Aba de Início')),
+                  const Center(child: Text('Configurações de Perfil')),
+                  const Center(
+                    child: Text('Aba sem ícones para um visual limpo'),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 32),
+            const Separator(),
+            const SizedBox(height: 32),
+
             // Section: Slider
             _SectionTitle(title: 'Slider'),
             const SizedBox(height: 12),

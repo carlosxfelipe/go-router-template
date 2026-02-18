@@ -22,9 +22,7 @@ class CustomBadge extends StatelessWidget {
 
     switch (variant) {
       case BadgeVariant.default_:
-        backgroundColor = isDarkMode
-            ? Colors.grey.shade800
-            : Colors.grey.shade200;
+        backgroundColor = theme.colorScheme.secondary;
         textColor = theme.colorScheme.onSurface;
         break;
       case BadgeVariant.secondary:

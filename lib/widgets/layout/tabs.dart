@@ -15,7 +15,6 @@ class CustomTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDarkMode = theme.brightness == Brightness.dark;
 
     return DefaultTabController(
       length: tabs.length,
@@ -27,9 +26,7 @@ class CustomTabs extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
-                  color: isDarkMode
-                      ? Colors.grey.shade800
-                      : Colors.grey.shade200,
+                  color: theme.colorScheme.outlineVariant,
                   width: 1,
                 ),
               ),

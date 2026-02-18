@@ -52,7 +52,6 @@ class SearchAppBarContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDarkMode = theme.brightness == Brightness.dark;
 
     return SizedBox(
       height: 40,
@@ -77,14 +76,14 @@ class SearchAppBarContent extends StatelessWidget {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(6),
             borderSide: BorderSide(
-              color: isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,
+              color: theme.colorScheme.outlineVariant,
               width: 1,
             ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(6),
             borderSide: BorderSide(
-              color: isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,
+              color: theme.colorScheme.outlineVariant,
               width: 1,
             ),
           ),

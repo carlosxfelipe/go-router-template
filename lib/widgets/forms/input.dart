@@ -34,7 +34,6 @@ class Input extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final isDarkMode = theme.brightness == Brightness.dark;
 
     final hasError = errorText != null;
 
@@ -83,22 +82,14 @@ class Input extends StatelessWidget {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6),
               borderSide: BorderSide(
-                color: hasError
-                    ? Colors.red
-                    : (isDarkMode
-                          ? Colors.grey.shade700
-                          : Colors.grey.shade300),
+                color: hasError ? Colors.red : colorScheme.outlineVariant,
                 width: 1,
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6),
               borderSide: BorderSide(
-                color: hasError
-                    ? Colors.red
-                    : (isDarkMode
-                          ? Colors.grey.shade700
-                          : Colors.grey.shade300),
+                color: hasError ? Colors.red : colorScheme.outlineVariant,
                 width: 1,
               ),
             ),
@@ -112,7 +103,7 @@ class Input extends StatelessWidget {
             disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6),
               borderSide: BorderSide(
-                color: isDarkMode ? Colors.grey.shade800 : Colors.grey.shade200,
+                color: colorScheme.outlineVariant.withAlpha(80),
                 width: 1,
               ),
             ),

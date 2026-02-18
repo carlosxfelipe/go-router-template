@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/foundation.dart';
@@ -6,13 +5,11 @@ import 'package:flutter/foundation.dart';
 class FloatingDock extends StatefulWidget {
   final int currentIndex;
   final Widget child;
-  final bool isGlass;
 
   const FloatingDock({
     super.key,
     required this.currentIndex,
     required this.child,
-    this.isGlass = false,
   });
 
   @override
@@ -46,15 +43,7 @@ class _FloatingDockState extends State<FloatingDock> {
           ? null
           : Padding(
               padding: const EdgeInsets.fromLTRB(40, 0, 40, 32),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(32),
-                child: widget.isGlass
-                    ? BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-                        child: _buildDock(isDarkMode, theme),
-                      )
-                    : _buildDock(isDarkMode, theme),
-              ),
+              child: _buildDock(isDarkMode, theme),
             ),
     );
   }
@@ -62,17 +51,10 @@ class _FloatingDockState extends State<FloatingDock> {
   Widget _buildDock(bool isDarkMode, ThemeData theme) {
     return Container(
       height: 64,
-      padding: const EdgeInsets.symmetric(
-        horizontal: 8,
-        vertical: 8,
-      ), // Padding para os itens "dentro" do dock
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       decoration: BoxDecoration(
-        color: widget.isGlass
-            ? (isDarkMode
-                  ? Colors.black.withAlpha(40)
-                  : Colors.white.withAlpha(150))
-            : theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(32),
+        color: theme.scaffoldBackgroundColor,
+        borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withAlpha(isDarkMode ? 40 : 15),
@@ -80,10 +62,7 @@ class _FloatingDockState extends State<FloatingDock> {
             offset: const Offset(0, 4),
           ),
         ],
-        border: Border.all(
-          color: isDarkMode ? Colors.grey.shade700 : Colors.grey.shade300,
-          width: 1.0,
-        ),
+        border: Border.all(color: theme.colorScheme.outlineVariant, width: 1.0),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -118,23 +97,23 @@ class _FloatingDockState extends State<FloatingDock> {
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: InkWell(
           onTap: () => _onItemTapped(index),
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(8),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             decoration: BoxDecoration(
               color: isSelected
                   ? (isDarkMode
-                        ? Colors.white.withAlpha(30)
+                        ? theme.colorScheme.onSurface.withAlpha(30)
                         : theme.colorScheme.secondary)
                   : Colors.transparent,
-              borderRadius: BorderRadius.circular(24),
+              borderRadius: BorderRadius.circular(8),
             ),
             child: Center(
               child: Icon(
                 icon,
                 size: 24,
                 color: isSelected
-                    ? (isDarkMode ? Colors.white : theme.colorScheme.primary)
+                    ? theme.colorScheme.primary
                     : theme.colorScheme.onSurface.withAlpha(100),
               ),
             ),

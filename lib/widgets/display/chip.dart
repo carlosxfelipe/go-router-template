@@ -20,20 +20,14 @@ class CustomChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    // Cores inspiradas no shadcn/ui
+    // Cores inspiradas no shadcn/ui baseadas no tema
     final backgroundColor = selected
-        ? (theme.brightness == Brightness.dark
-              ? Colors.grey.shade800
-              : const Color(0xFFF4F4F5))
+        ? theme.colorScheme.secondary
         : theme.scaffoldBackgroundColor;
 
     final borderColor = selected
-        ? (theme.brightness == Brightness.dark
-              ? Colors.grey.shade700
-              : Colors.grey.shade300)
-        : (theme.brightness == Brightness.dark
-              ? Colors.grey.shade800
-              : Colors.grey.shade200);
+        ? theme.colorScheme.outlineVariant
+        : theme.colorScheme.outlineVariant.withAlpha(80);
 
     final foregroundColor = selected
         ? theme.colorScheme.onSurface
