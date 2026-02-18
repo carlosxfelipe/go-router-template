@@ -237,7 +237,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
                 children: [
                   Icon(
                     Icons.touch_app,
-                    color: theme.colorScheme.primary,
+                    color: theme.colorScheme.onSurface,
                     size: 24,
                   ),
                   const SizedBox(width: 12),
@@ -346,7 +346,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
                     child: Icon(
                       Icons.info_outline,
                       size: 22,
-                      color: theme.colorScheme.primary,
+                      color: theme.colorScheme.onSurface,
                     ),
                   ),
                 ],
@@ -451,7 +451,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
                 child: Row(
                   children: [
                     const CustomAvatar(
-                      name: 'Ana Paula',
+                      name: 'Carlos Felipe Araújo',
                       size: AvatarSize.large,
                     ),
                     const SizedBox(width: 12),
@@ -460,21 +460,21 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Ana Paula',
+                            'Carlos Felipe Araújo',
                             style: theme.textTheme.titleSmall?.copyWith(
                               fontWeight: FontWeight.w600,
                             ),
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            'Desenvolvedora Flutter',
+                            'Desenvolvedor Flutter',
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: theme.colorScheme.onSurface.withAlpha(153),
                             ),
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Apaixonada por criar experiências incríveis em aplicativos móveis com Flutter e Dart.',
+                            'Apaixonado por criar experiências incríveis em aplicativos móveis com Flutter e Dart.',
                             style: theme.textTheme.bodySmall,
                           ),
                         ],

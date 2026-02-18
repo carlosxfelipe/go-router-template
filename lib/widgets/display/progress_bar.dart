@@ -30,7 +30,6 @@ class CustomProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDarkMode = theme.brightness == Brightness.dark;
     final percentage = (value * 100).clamp(0, 100).toInt();
 
     return Column(
@@ -56,7 +55,7 @@ class CustomProgressBar extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: theme.colorScheme.primary,
+                    color: theme.colorScheme.onSurface,
                   ),
                 ),
             ],
@@ -68,9 +67,7 @@ class CustomProgressBar extends StatelessWidget {
           child: LinearProgressIndicator(
             value: value,
             minHeight: _height,
-            backgroundColor: isDarkMode
-                ? Colors.grey.shade800
-                : Colors.grey.shade200,
+            backgroundColor: theme.colorScheme.outlineVariant.withAlpha(80),
             valueColor: AlwaysStoppedAnimation<Color>(
               theme.colorScheme.primary,
             ),
@@ -106,7 +103,6 @@ class CustomProgressBarIndeterminate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDarkMode = theme.brightness == Brightness.dark;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,9 +123,7 @@ class CustomProgressBarIndeterminate extends StatelessWidget {
           borderRadius: BorderRadius.circular(_height / 2),
           child: LinearProgressIndicator(
             minHeight: _height,
-            backgroundColor: isDarkMode
-                ? Colors.grey.shade800
-                : Colors.grey.shade200,
+            backgroundColor: theme.colorScheme.outlineVariant.withAlpha(80),
             valueColor: AlwaysStoppedAnimation<Color>(
               theme.colorScheme.primary,
             ),

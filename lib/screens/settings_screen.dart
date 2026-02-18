@@ -57,7 +57,11 @@ class ProfileBody extends StatelessWidget {
             },
             child: Row(
               children: [
-                Icon(Icons.widgets, color: theme.colorScheme.primary, size: 24),
+                Icon(
+                  Icons.widgets,
+                  color: theme.colorScheme.onSurface,
+                  size: 24,
+                ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(

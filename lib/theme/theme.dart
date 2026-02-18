@@ -13,7 +13,7 @@ class AppColors {
   // Dark
   static const primaryDark = Color(0xFFF4F4F5);
   static const onPrimaryDark = Color(0xFF09090B);
-  static const secondaryDark = Color(0xFF18181B);
+  static const secondaryDark = Color(0xFF1E293B);
   static const onSecondaryDark = Colors.white;
   static const surfaceDark = Color(0xFF0F172A);
   static const scaffoldBackgroundDark = Color(0xFF020817);

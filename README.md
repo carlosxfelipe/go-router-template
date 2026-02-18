@@ -447,13 +447,20 @@ Por exemplo, para alterar a cor primária para vermelho, você pode ajustar as s
 
 ```dart
 class AppColors {
-  // ... outras cores
-
+  // Light
   static const primaryLight = Color(0xFFD62828);
+  static const onPrimaryLight = Colors.white;
+  static const secondaryLight = Color(0xFFFFEBEB);
+  static const onSecondaryLight = Color(0xFFD62828);
+  static const surfaceLight = Color(0xFFFFFFFF);
+  static const scaffoldBackgroundLight = Color(0xFFFFFFFF);
 
-  static const primaryDark = Color(0xFFD62828);
-  static const onPrimaryDark = Colors.white;
-
-  // ... outras cores
+  // Dark
+  static const primaryDark = Color(0xFFFF4D4D);
+  static const onPrimaryDark = Colors.black;
+  static const secondaryDark = Color(0xFF2A1515);
+  static const onSecondaryDark = Color(0xFFFFB3B3);
+  static const surfaceDark = Color(0xFF121212);
+  static const scaffoldBackgroundDark = Color(0xFF0D0D0D);
 }
 ```
