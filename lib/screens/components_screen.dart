@@ -22,6 +22,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
   // Controllers de formulário e estado de componentes básicos
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
   String? _emailError;
   bool _obscurePassword = true;
   bool _notificationsEnabled = true;
@@ -99,6 +100,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
+    _dateController.dispose();
     super.dispose();
   }
 
@@ -144,6 +146,35 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
               errorText: _emailError,
               onChanged: _validateEmail,
               keyboardType: TextInputType.emailAddress,
+            ),
+            const SizedBox(height: 16),
+            Input(
+              controller: _dateController,
+              label: 'Data de Nascimento',
+              placeholder: 'Selecione uma data',
+              prefixIcon: Icons.calendar_today,
+              readOnly: true,
+              onTap: () {
+                CustomSheet.show(
+                  context: context,
+                  title: 'Selecionar Data',
+                  description: 'Escolha uma data no calendário abaixo.',
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: CustomCalendar(
+                      selectedDate: _selectedDate,
+                      onDateSelected: (date) {
+                        setState(() {
+                          _selectedDate = date;
+                          _dateController.text =
+                              '${date.day.toString().padLeft(2, '0')}/${date.month.toString().padLeft(2, '0')}/${date.year}';
+                        });
+                        Navigator.pop(context); // Fecha o sheet após selecionar
+                      },
+                    ),
+                  ),
+                );
+              },
             ),
             const SizedBox(height: 16),
             Input(

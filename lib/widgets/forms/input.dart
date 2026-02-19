@@ -15,6 +15,8 @@ class Input extends StatelessWidget {
     this.maxLines = 1,
     this.onChanged,
     this.keyboardType,
+    this.readOnly = false,
+    this.onTap,
   });
 
   final TextEditingController? controller;
@@ -26,9 +28,11 @@ class Input extends StatelessWidget {
   final Widget? suffixIcon;
   final bool obscureText;
   final bool enabled;
+  final bool readOnly;
   final int maxLines;
   final ValueChanged<String>? onChanged;
   final TextInputType? keyboardType;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +61,8 @@ class Input extends StatelessWidget {
           onChanged: onChanged,
           obscureText: obscureText,
           enabled: enabled,
+          readOnly: readOnly,
+          onTap: onTap,
           maxLines: maxLines,
           keyboardType: keyboardType,
           style: TextStyle(fontSize: 16, color: colorScheme.onSurface),
