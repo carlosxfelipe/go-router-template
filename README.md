@@ -52,7 +52,7 @@ Siga os passos abaixo para aplicar este template a um novo projeto Flutter:
 
 ## Componentes Customizados
 
-Este template inclui **23 componentes** customizados inspirados no **shadcn/ui**, otimizados para mobile e com suporte completo a temas dark/light. Todos os componentes estão disponíveis através do import `package:go_router_template/widgets.dart`.
+Este template inclui **24 componentes** customizados inspirados no **shadcn/ui**, otimizados para mobile e com suporte completo a temas dark/light. Todos os componentes estão disponíveis através do import `package:go_router_template/widgets.dart`.
 
 ### Componentes Essenciais
 
@@ -391,6 +391,31 @@ CustomTooltip(
   message: 'Este é um tooltip',
   arrowAlignment: TooltipArrowAlignment.right,
   child: Icon(Icons.info_outline),
+)
+```
+
+#### 24. **CustomDataTable**
+
+Tabela de dados poderosa com suporte a ordenação interativa e paginação customizada.
+
+```dart
+CustomDataTable<User>(
+  items: _pagedUsers,
+  totalItems: 100,
+  currentPage: 1,
+  pageSize: 10,
+  onPageChanged: (page) => _fetchPage(page),
+  columns: [
+    CustomColumn(
+      label: 'Nome',
+      valueGetter: (user) => user.name,
+    ),
+    CustomColumn(label: 'Cargo'), // Sem ordenação
+  ],
+  cellBuilder: (user) => [
+    DataCell(Text(user.name)),
+    DataCell(CustomBadge(label: user.role)),
+  ],
 )
 ```
 

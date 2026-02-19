@@ -23,6 +23,7 @@ export 'package:go_router_template/widgets/display/card.dart';
 export 'package:go_router_template/widgets/display/chip.dart';
 export 'package:go_router_template/widgets/display/separator.dart';
 export 'package:go_router_template/widgets/display/progress_bar.dart';
+export 'package:go_router_template/widgets/display/data_table.dart';
 
 // Feedback
 export 'package:go_router_template/widgets/feedback/dialog.dart';

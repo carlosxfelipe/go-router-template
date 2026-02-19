@@ -9,6 +9,7 @@ class ComponentsScreen extends StatefulWidget {
 }
 
 class _ComponentsScreenState extends State<ComponentsScreen> {
+  // Tags disponíveis para o exemplo de Chips
   static const List<String> _allTags = [
     'Flutter',
     'Dart',
@@ -18,6 +19,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
     'Backend',
   ];
 
+  // Controllers de formulário e estado de componentes básicos
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   String? _emailError;
@@ -26,7 +28,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
   bool _darkModeEnabled = false;
   bool _isLoading = false;
 
-  // Advanced components state
+  // Estado de componentes avançados
   bool _termsAccepted = false;
   bool _newsletterSubscribed = false;
   String? _selectedPayment = 'credit';
@@ -36,6 +38,62 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
   double _volumeValue = 50;
   double _progressValue = 0.65;
   final List<String> _selectedTags = ['Flutter', 'Dart'];
+
+  // Dados mockados para o exemplo de DataTable
+  final List<Map<String, String>> _users = [
+    {
+      'id': '1',
+      'nome': 'Carlos Felipe',
+      'email': 'carlos@example.com',
+      'cargo': 'Dev',
+    },
+    {
+      'id': '2',
+      'nome': 'João Silva',
+      'email': 'joao@example.com',
+      'cargo': 'Designer',
+    },
+    {
+      'id': '3',
+      'nome': 'Maria Santos',
+      'email': 'maria@example.com',
+      'cargo': 'PM',
+    },
+    {
+      'id': '4',
+      'nome': 'Ana Oliveira',
+      'email': 'ana@example.com',
+      'cargo': 'Dev',
+    },
+    {
+      'id': '5',
+      'nome': 'Pedro Lima',
+      'email': 'pedro@example.com',
+      'cargo': 'Designer',
+    },
+    {
+      'id': '6',
+      'nome': 'Julia Costa',
+      'email': 'julia@example.com',
+      'cargo': 'PM',
+    },
+    {
+      'id': '7',
+      'nome': 'Marcos Souza',
+      'email': 'marcos@example.com',
+      'cargo': 'Dev Ops',
+    },
+    {
+      'id': '8',
+      'nome': 'Beatriz Rocha',
+      'email': 'beatriz@example.com',
+      'cargo': 'QA',
+    },
+  ];
+
+  // Estado da paginação para o exemplo de DataTable
+  int _currentPage = 1;
+  static const int _pageSize = 3;
 
   @override
   void dispose() {
@@ -893,6 +951,56 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
                     ),
                   )
                   .toList(),
+            ),
+
+            const SizedBox(height: 32),
+            const Separator(),
+            const SizedBox(height: 32),
+
+            // Section: Data Table
+            _SectionTitle(title: 'Data Table'),
+            const SizedBox(height: 12),
+            CustomCard(
+              padding: EdgeInsets.zero,
+              child: CustomDataTable<Map<String, String>>(
+                // Simulamos o backend: mandamos apenas a "fatia" da página atual
+                items: _users
+                    .skip((_currentPage - 1) * _pageSize)
+                    .take(_pageSize)
+                    .toList(),
+                currentPage: _currentPage,
+                pageSize: _pageSize,
+                totalItems: _users.length,
+                onPageChanged: (newPage) {
+                  setState(() => _currentPage = newPage);
+                },
+                columns: [
+                  CustomColumn(label: 'ID', valueGetter: (user) => user['id']!),
+                  CustomColumn(
+                    label: 'Nome',
+                    valueGetter: (user) => user['nome']!,
+                  ),
+                  CustomColumn(
+                    label: 'Email',
+                    valueGetter: (user) => user['email']!,
+                  ),
+                  CustomColumn(
+                    label: 'Cargo',
+                    valueGetter: (user) => user['cargo']!,
+                  ),
+                ],
+                cellBuilder: (user) => [
+                  DataCell(Text(user['id']!)),
+                  DataCell(Text(user['nome']!)),
+                  DataCell(Text(user['email']!)),
+                  DataCell(
+                    CustomBadge(
+                      label: user['cargo']!,
+                      variant: BadgeVariant.secondary,
+                    ),
+                  ),
+                ],
+              ),
             ),
 
             const SizedBox(height: 32),
