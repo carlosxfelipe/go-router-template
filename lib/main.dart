@@ -23,7 +23,20 @@ class MainApp extends StatelessWidget {
       builder: (context, child) {
         final brightness = Theme.of(context).brightness;
         AppTheme.setSystemUIOverlayStyle(brightness);
-        return child!;
+        // return child!;
+
+        // Limita a largura máxima da aplicação e centraliza o conteúdo.
+        // Isso é especialmente útil para web e tablets, evitando que
+        // os componentes fiquem muito esticados em telas grandes.
+        return Container(
+          color: Theme.of(context).scaffoldBackgroundColor,
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 1024),
+              child: child!,
+            ),
+          ),
+        );
       },
     );
   }

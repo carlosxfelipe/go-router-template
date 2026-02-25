@@ -107,34 +107,41 @@ class _CustomDataTableState<T> extends State<CustomDataTable<T>> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: DataTable(
-            headingRowHeight: widget.headingRowHeight,
-            headingRowColor: WidgetStateProperty.all(
-              theme.colorScheme.secondary,
-            ),
-            dataRowMaxHeight: widget.dataRowMaxHeight,
-            columnSpacing: widget.columnSpacing,
-            sortColumnIndex: _sortColumnIndex,
-            sortAscending: _sortAscending,
-            headingTextStyle: TextStyle(
-              fontWeight: FontWeight.w600,
-              color: theme.colorScheme.onSurface,
-              fontSize: 14,
-            ),
-            columns: List.generate(widget.columns.length, (index) {
-              final column = widget.columns[index];
-              return DataColumn(
-                label: Text(column.label),
-                numeric: column.numeric,
-                onSort: column.valueGetter != null ? _onSort : null,
-              );
-            }),
-            rows: _displayItems.map((item) {
-              return DataRow(cells: widget.cellBuilder(item));
-            }).toList(),
-          ),
+        LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minWidth: constraints.maxWidth),
+                child: DataTable(
+                  headingRowHeight: widget.headingRowHeight,
+                  headingRowColor: WidgetStateProperty.all(
+                    theme.colorScheme.secondary,
+                  ),
+                  dataRowMaxHeight: widget.dataRowMaxHeight,
+                  columnSpacing: widget.columnSpacing,
+                  sortColumnIndex: _sortColumnIndex,
+                  sortAscending: _sortAscending,
+                  headingTextStyle: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: theme.colorScheme.onSurface,
+                    fontSize: 14,
+                  ),
+                  columns: List.generate(widget.columns.length, (index) {
+                    final column = widget.columns[index];
+                    return DataColumn(
+                      label: Text(column.label),
+                      numeric: column.numeric,
+                      onSort: column.valueGetter != null ? _onSort : null,
+                    );
+                  }),
+                  rows: _displayItems.map((item) {
+                    return DataRow(cells: widget.cellBuilder(item));
+                  }).toList(),
+                ),
+              ),
+            );
+          },
         ),
         if (hasPagination) ...[
           const Divider(height: 1),

@@ -31,9 +31,6 @@ class CustomSheet {
         final isDarkMode = theme.brightness == Brightness.dark;
         final effectiveBackgroundColor =
             backgroundColor ?? theme.scaffoldBackgroundColor;
-        final borderColor = isDarkMode
-            ? Colors.grey.shade800
-            : Colors.grey.shade200;
         final handleColor = isDarkMode
             ? Colors.grey.shade700
             : Colors.grey.shade300;
@@ -45,7 +42,9 @@ class CustomSheet {
           decoration: BoxDecoration(
             color: effectiveBackgroundColor,
             borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-            border: Border.all(color: borderColor, width: 1),
+            border: isDarkMode
+                ? Border.all(color: theme.colorScheme.outlineVariant, width: 1)
+                : null,
           ),
           padding: EdgeInsets.only(
             bottom: MediaQuery.of(context).viewInsets.bottom,
