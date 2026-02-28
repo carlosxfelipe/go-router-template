@@ -4,6 +4,7 @@ export 'package:go_router_template/widgets/layout/search_app_bar.dart';
 export 'package:go_router_template/widgets/layout/custom_bottom_navigation_bar.dart';
 export 'package:go_router_template/widgets/layout/tabs.dart';
 export 'package:go_router_template/widgets/layout/accordion.dart';
+export 'package:go_router_template/widgets/layout/responsive_max_width.dart';
 
 // Forms
 export 'package:go_router_template/widgets/forms/button.dart';
