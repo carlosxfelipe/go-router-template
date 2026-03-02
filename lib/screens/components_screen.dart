@@ -160,6 +160,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
                     context: context,
                     title: 'Selecionar Data',
                     description: 'Escolha uma data no calendário abaixo.',
+                    descriptionAlignment: TextAlign.center,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: CustomCalendar(

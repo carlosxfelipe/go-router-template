@@ -57,77 +57,88 @@ class _DialogContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      backgroundColor: theme.scaffoldBackgroundColor,
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Title
-            Text(
-              title,
-              style: theme.textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-
-            // Description or custom content
-            if (description != null || content != null) ...[
-              const SizedBox(height: 12),
-              if (content != null)
-                content!
-              else
-                Text(
-                  description!,
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.colorScheme.onSurface.withAlpha(179),
-                  ),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      child: Container(
+        decoration: BoxDecoration(
+          color: theme.scaffoldBackgroundColor,
+          borderRadius: BorderRadius.circular(8),
+          border: isDark
+              ? Border.all(color: theme.colorScheme.outlineVariant, width: 1)
+              : null,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Title
+              Text(
+                title,
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w700,
                 ),
-            ],
+              ),
 
-            const SizedBox(height: 24),
-
-            // Buttons
-            if (type == DialogType.confirm) ...[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Button(
-                      label: cancelText ?? 'Cancelar',
-                      outlined: true,
-                      onPressed: () {
-                        Navigator.of(context).pop(false);
-                        onCancel?.call();
-                      },
+              // Description or custom content
+              if (description != null || content != null) ...[
+                const SizedBox(height: 12),
+                if (content != null)
+                  content!
+                else
+                  Text(
+                    description!,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: theme.colorScheme.onSurface.withAlpha(179),
                     ),
                   ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Button(
-                      label: confirmText,
-                      onPressed: () {
-                        Navigator.of(context).pop(true);
-                        onConfirm?.call();
-                      },
+              ],
+
+              const SizedBox(height: 24),
+
+              // Buttons
+              if (type == DialogType.confirm) ...[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: Button(
+                        label: cancelText ?? 'Cancelar',
+                        outlined: true,
+                        onPressed: () {
+                          Navigator.of(context).pop(false);
+                          onCancel?.call();
+                        },
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ] else ...[
-              Button(
-                label: confirmText,
-                onPressed: () {
-                  Navigator.of(context).pop(true);
-                  onConfirm?.call();
-                },
-              ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Button(
+                        label: confirmText,
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                          onConfirm?.call();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ] else ...[
+                Button(
+                  label: confirmText,
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                    onConfirm?.call();
+                  },
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

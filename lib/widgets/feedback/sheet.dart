@@ -6,6 +6,8 @@ class CustomSheet {
     required Widget child,
     String? title,
     String? description,
+    TextAlign titleAlignment = TextAlign.center,
+    TextAlign descriptionAlignment = TextAlign.start,
     bool isScrollControlled = true,
     bool useRootNavigator = false,
     bool isDismissible = true,
@@ -69,7 +71,7 @@ class CustomSheet {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       if (title != null)
@@ -78,6 +80,7 @@ class CustomSheet {
                           style: theme.textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.w700,
                           ),
+                          textAlign: titleAlignment,
                         ),
                       if (description != null) ...[
                         const SizedBox(height: 4),
@@ -86,6 +89,7 @@ class CustomSheet {
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: theme.colorScheme.onSurface.withAlpha(153),
                           ),
+                          textAlign: descriptionAlignment,
                         ),
                       ],
                     ],
