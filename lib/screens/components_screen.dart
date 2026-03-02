@@ -201,6 +201,7 @@ class _ComponentsScreenState extends State<ComponentsScreen> {
                 label: 'Mensagem',
                 placeholder: 'Digite sua mensagem...',
                 maxLines: 4,
+                maxLength: 200,
               ),
               const SizedBox(height: 16),
               OTPInput(
